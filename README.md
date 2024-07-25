@@ -1,19 +1,19 @@
 # ML-A11.2022.14595-UAS
-Judul : Sentimne Analisis Review Film menggunakan Algoritma Naive Bayes
-Nama : Wahyu Aji Pamungkas
-Nim : A11.2022.14595
+Judul : Sentimne Analisis Review Film menggunakan Algoritma Naive Bayes<br>
+Nama : Wahyu Aji <br>
+Nim : A11.2022.14595<br>
 
 ## Proyek ini mengimplementasikan model pembelajaran mesin untuk sentimen Analis Teks Proccesing untuk mengungkap nilai positif dan negatif dalam sebuat reviw film.
 
 ## Instalasi
-1. ** clone Resposposi ** 
-   ''' sh
+1. **clone Resposposi ** 
+   ``` sh
    https://github.com/Wahyuajipamungkas/ML-A11.2022.14595-UAS
-   '''
+   ```
 2. ** Instal pustaka yang diperlukan ** 
-   '''sh
+   ```sh
    pip install pandas nimpy matplotlib seaborn
-   '''
+   ```
 
 ## Deskripsi Proyek
 Proyek ini terdiri dari berbagai langkah untuk menentukan hasil analisisnya yaitu pemisahan score negatif dan positif, pemisahan kalimat dan kata dan menentukan kata yang positif dan negatif
@@ -54,11 +54,11 @@ algoritma Naive Bayes, untuk mengekstraksi dan mengklasifikasikan sentimen
 dari ulasan film yang tersebar luas di internet.
 
 ## Dataset
-Link dataset : https://github.com/Wahyuajipamungkas/ML-A11.2022.14595-UAS/TugasAkhir
+Link dataset : https://github.com/Wahyuajipamungkas/ML-A11.2022.14595-UAS/TugasAkhir<br>
 Didalam dataset disney.csv itu terdapat 8000+ data yang dikumpulkan dalam beberapa tahun. didalam dataset tersebut terdapat atribut antara lain nama_film,film_year, author_name,review_date, Score, titlee_name, review_text, POU. disini saya menggunakan kolom score untuk dijadikan label. Saya mengambil dataset ini dari kaggle langsung dan data ini bersifat public.<br>
 
 Untuk tahapannya/ ERDnya<br>
-<img src="images/Screenshot 2024-07-25 202852.png" align="center" width="800" height="250">
+<img src="images/Screenshot 2024-07-25 202852.png" align="center" width="800" height="800">
 
 ## Proses Learning
 1. Import Pustaka
@@ -82,15 +82,15 @@ filename = "disney.csv"
 db = pd.read_csv(filename, encoding='latin-1')
 db.head()
 ```
-Dalam dataset ini terdapat 8000+ data dan memiliki 8 Atribut
+Dalam dataset ini terdapat 8000+ data dan memiliki 8 Atribut<br>
 3. Memilih Atribut 
 ```python
 db.drop(columns=['film_name','film_year','title_name','author_name','review_date','POU'], inplace=True)
 db.columns = ['score','review_text']
 db.head()
 ```
-Dalam memilih atribut ini saya menggunakan atribut score dan review_text untuk membuat sentimen analisis ini.
-4. Preprocessing Data
+Dalam memilih atribut ini saya menggunakan atribut score dan review_text untuk membuat sentimen analisis ini.<br>
+4. Preprocessing Data<br>
 a. Cleaning text
 ```python
 import string
@@ -101,7 +101,7 @@ db['review_text'] = db['review_text'].fillna('')
 db['cleaned_text'] = db['review_text'].apply(lambda x: clean_text(x))
 db['label'] = db['score'].map({0.0:0, 1.0:0, 2.0:0, 3.0:0, 4.0:0, 5.0:0, 6.0:1, 7.0:1, 8.0:1, 9.0:1, 10.0:1})
 ```
-Diatas adalam proses Clearning proses Dimana menghapus karakter selain huruf seperti (@),(#) dan pemberian nilai pada scoree jika score 1- 5 bersifat 0(negatif), jika 6-10 bersifat 1(positif)
+Diatas adalam proses Clearning proses Dimana menghapus karakter selain huruf seperti (@),(#) dan pemberian nilai pada scoree jika score 1- 5 bersifat 0(negatif), jika 6-10 bersifat 1(positif)<br>
 b. memberi fitur tambahan
 ```python
 def count_punct(text):
@@ -113,7 +113,7 @@ db['review_text_len'] = db['review_text'].apply(lambda x: len(x) - x.count(" "))
 db['punct'] = db['review_text'].apply(lambda x: count_punct(x))
 db.head()
 ```
-Disini kita menambahkan pajang review tersebut dan seberapa sering tanda baca keluar pada review tersebut.
+Disini kita menambahkan pajang review tersebut dan seberapa sering tanda baca keluar pada review tersebut.<br>
 c. Tokenization
 ```python
 def tokenize_text(text):
@@ -122,7 +122,7 @@ def tokenize_text(text):
 db['perkata'] = db['cleaned_text'].apply(lambda x: tokenize_text(x))
 db.head()
 ```
-Disini kita mengubah kalimat pada review menjadi perkata.
+Disini kita mengubah kalimat pada review menjadi perkata.<br>
 d. Lemmatization and removing Stopwords
 ```python
 import nltk
@@ -142,7 +142,7 @@ lemmatizer = nltk.stem.WordNetLemmatizer()
 db['lemmatized_review'] = db['perkata'].apply(lambda x: lemmatize_text(x))
 db.head()
 ```
-Disini kita mengubah kata makna menjadi kata biasa(atau kata yang tak bermakna) dan disini kita mengfiltering data frame.
+Disini kita mengubah kata makna menjadi kata biasa(atau kata yang tak bermakna) dan disini kita mengfiltering data frame.<br>
 5.EDA
 ```python
 print(f"Input data has {len(db)} rows and {len(db.columns)} columns")
@@ -166,8 +166,8 @@ sns.countplot(x='score', data=db);
 ```
 Kita mengecek review yang hanya emotikon atau tidak ada reviewnya.
  Dalam proses ini EDA ini dapat membedakan kumpulan data apa yang diungkapkan lebih jauh diluar pemodelan data formal ataupun data pengujian hipotesis.
- Dan disini saya memdeskripsikannya dalam diagram batang.
- 6. Visualizing Word Clouds
+ Dan disini saya memdeskripsikannya dalam diagram batang.<br>
+ 6. Visualizing Word Clouds<br>
  Word Clouds ini adalah suatu gambar yang terdiri dari kumpulan kata dimana besarnya kata mepresentasikan suatu kata yang sering keluar atau disebutkan dan akan ditampilkan pada dokumen text.
  ```python
 from wordcloud import WordCloud
@@ -183,7 +183,7 @@ filtered_negative = filtered_negative.lower()
 filtered_positive = ("").join(str(positive_list)) #convert the list into a string of ham
 filtered_positive = filtered_positive.lower()
 ```
-disini saya mengkategorikan score positif dan score negatif.
+disini saya mengkategorikan score positif dan score negatif.<br>
 a. Word Clouds :Positif
 ```python
 wordcloud = WordCloud(max_font_size = 160, margin=0, background_color = "white", colormap="Greens").generate(filtered_positive)
@@ -236,14 +236,14 @@ X_test_vect = pd.concat([X_test[['review_text_len', 'punct']].reset_index(drop=T
 X_train_vect.head()
 X_test_vect.head() 
 ```
-Proses diatas akan menghasilkan extraksi dari fitur diatas.
-8. Visualize Confusion Matrix
+Proses diatas akan menghasilkan extraksi dari fitur diatas.<br>
+8. Visualize Confusion Matrix<br>
 --> Vectorizer : TF-IDF
    ```python
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
    ```
-disini saya memanggil classification_report dan confusion_matrix
+disini saya memanggil classification_report dan confusion_matrix<br>
 -->Algoritma : Multinominal Naive Bayen
 ```python
 from sklearn.naive_bayes import MultinomialNB
@@ -268,8 +268,8 @@ plt.xlabel("Predicted Label")
 plt.ylabel("True Label")
 plt.show()
 ```
-Disini saya menggunakan algoritma multinominal Naive Bayen, dan proses diatas akan menghasilkan confusional Matrix adalah sebuah tabel yang sering digunakan untuk mengukur kinerja dari model klasifikasi di machine learning yang dapat membandingkan nilai aktual dari nilai asli dan nilai prediksi.
-9. Performing K-Fold cross Validation
+Disini saya menggunakan algoritma multinominal Naive Bayen, dan proses diatas akan menghasilkan confusional Matrix adalah sebuah tabel yang sering digunakan untuk mengukur kinerja dari model klasifikasi di machine learning yang dapat membandingkan nilai aktual dari nilai asli dan nilai prediksi.<br>
+9. Performing K-Fold cross Validation<br>
 Merupakan sebuah prosedur untuk memisahkan data traning dan data testing. yang berfungsi untuk menemukan data yang terbaik.
 ```python
 from sklearn.model_selection import cross_val_score
@@ -282,9 +282,9 @@ for model, name in zip(models, names):
         print(f" {score} - {cross_val_score(model, X_train_vect, y_train, scoring=score, cv=10).mean()} ")
     print()
 ```
-Diproses ini akan menghasilkan nilai Accurarcy, precision, recall dan f1.
+Diproses ini akan menghasilkan nilai Accurarcy, precision, recall dan f1.<br>
 
-10. Prediction
+10. Prediction<br>
 --> Vectorizer : CountVectorizer (Bag of Words)<br>
 --> Algoritma : Multinominal Naive Bayen
 ```python
