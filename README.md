@@ -6,11 +6,11 @@ Nim : A11.2022.14595<br>
 ## Proyek ini mengimplementasikan model pembelajaran mesin untuk sentimen Analis Teks Proccesing untuk mengungkap nilai positif dan negatif dalam sebuat reviw film.
 
 ## Instalasi
-1. **clone Resposposi ** 
+1. clone Resposposi
    ``` sh
    https://github.com/Wahyuajipamungkas/ML-A11.2022.14595-UAS
    ```
-2. ** Instal pustaka yang diperlukan ** 
+2. Instal pustaka yang diperlukan 
    ```sh
    pip install pandas nimpy matplotlib seaborn
    ```
@@ -22,7 +22,7 @@ Proyek ini terdiri dari berbagai langkah untuk menentukan hasil analisisnya yait
 proses yang bertujuan untuk memisahkan isi dalam database yang berbentuk teks bersifat positif dan negatif. Ulasan atau pendapat khalayak umum sangat penting bagi pengembangan film selanjutnya dan bagi film itu sendiri. Algoritma yang disarankan untuk melakukan percobaan ini adalah algoritma Naïve Bayen(BA) adalah Algoritma Machine Learning untuk masalah Sentimen. 
 
 ## Tahapan
-<img src="images/Screenshot 2024-07-25 202852.png" align="center" width="800" height="250">
+<img src="images/Screenshot 2024-07-25 202852.png" align="center" width="800" height="800">
 
 ## Latar Belakang Masalah
 Dalam era digital saat ini, internet telah menjadi tempat utama bagi 
@@ -165,8 +165,8 @@ print(f"Number of null in text: { db['review_text'].isnull().sum()}")
 sns.countplot(x='score', data=db);
 ```
 Kita mengecek review yang hanya emotikon atau tidak ada reviewnya.
- Dalam proses ini EDA ini dapat membedakan kumpulan data apa yang diungkapkan lebih jauh diluar pemodelan data formal ataupun data pengujian hipotesis.
- Dan disini saya memdeskripsikannya dalam diagram batang.<br>
+ Dalam proses ini EDA ini dapat membedakan kumpulan data apa yang diungkapkan lebih jauh diluar pemodelan data formal ataupun data pengujian hipotesis.Dan disini saya memdeskripsikannya dalam diagram batang.<br>
+ <img src="images/Screenshot 2024-07-25 201253.png" align="center" width="800" height="250">
  6. Visualizing Word Clouds<br>
  Word Clouds ini adalah suatu gambar yang terdiri dari kumpulan kata dimana besarnya kata mepresentasikan suatu kata yang sering keluar atau disebutkan dan akan ditampilkan pada dokumen text.
  ```python
@@ -194,6 +194,7 @@ plt.margins(x=0, y=0)
 plt.title("Positive Reviews Word Cloud")
 plt.show()
 ```
+<img src="images/Screenshot 2024-07-25 222947.png" align="center" width="800" height="250">
 b. Word Clouds : Negatif
 ```python
 wordcloud = WordCloud(max_font_size = 160, margin=0, background_color = "white", colormap="Reds").generate(filtered_negative)
@@ -204,7 +205,7 @@ plt.margins(x=0, y=0)
 plt.title("Negative Reviews Word Cloud")
 plt.show()
 ```
-
+<img src="images/Screenshot 2024-07-25 223011.png" align="center" width="800" height="250">
 7. Feature Extraction From Text
 ```python
 X = db[['lemmatized_review', 'review_text_len', 'punct']]
