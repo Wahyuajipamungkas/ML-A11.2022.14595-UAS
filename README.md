@@ -3,9 +3,9 @@ Judul : Sentimne Analisis Review Film menggunakan Algoritma Naive Bayes
 Nama : Wahyu Aji Pamungkas
 Nim : A11.2022.14595
 
-# Proyek ini mengimplementasikan model pembelajaran mesin untuk sentimen Analis Teks Proccesing untuk mengungkap nilai positif dan negatif dalam sebuat reviw film.
+## Proyek ini mengimplementasikan model pembelajaran mesin untuk sentimen Analis Teks Proccesing untuk mengungkap nilai positif dan negatif dalam sebuat reviw film.
 
-# Instalasi
+## Instalasi
 1. * clone Resposposi 
    ' sh
    https://github.com/Wahyuajipamungkas/ML-A11.2022.14595-UAS
